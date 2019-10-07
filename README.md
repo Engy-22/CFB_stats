@@ -10,4 +10,4 @@ The resulting dataframe includes the away and home team, the lasso and ridge mod
 
 All statistics are acqired from the site 'https://www.sports-reference.com/cfb/'. The 'Team Offense' and 'Team Defense' tables are used for each year and conference. Conference rankings are obtained from the 'Conference Summary' table, and the schedule is taken from the 'Schedule and Scores' tab.
 
-Other details of the model are provided in the comments.
+Other details of the model are provided in the comments. Updates on progress of the model are given for the generation of input values by year and the generation of prediction values by game number.
