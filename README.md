@@ -12,5 +12,7 @@ All statistics are acqired from a college football database (Sports Reference, L
 
 Other details of the model are provided in the comments. Updates on progress of the model are given for the generation of input values by year and the generation of prediction values by game number.
 
+Edited as of November 6, 2019 to exclude year 2017 from model input, as ratings have been deleted for most teams.
+
 Source:
 "College Football Stats and History". Sports Reference, LLC. 2019. https://www.sports-reference.com/cfb/.
