@@ -76,9 +76,9 @@ class CFB:
         
         # Convert PAC-12 to PAC-10 prior to 2011 for team offense. Then generate correct URL.
         if conf == 'pac-12' and self.year1 < 2011:
-            url_off = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-offense.html'.format                (self.year1)
+            url_off = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-offense.html'.format(self.year1)
         else:
-            url_off = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-offense.html'.format                (conf,self.year1)
+            url_off = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-offense.html'.format(conf,self.year1)
             
         # Request data using URL, join 0 and 1 level columns labels and format properly, drop games and points 
         # columns, and add 'Off' to beginning of column names to delineate offensive stats. Stats already 
@@ -93,9 +93,9 @@ class CFB:
             
         # Again convert PAC-12 to PAC-10 for years prior to 2011 and create URL.
         if conf == 'pac-12' and self.year1 < 2011:
-            url_def = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-defense.html'.format                (self.year1)
+            url_def = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-defense.html'.format(self.year1)
         else:
-            url_def = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-defense.html'.format                    (conf,self.year1)
+            url_def = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-defense.html'.format(conf,self.year1)
             
         # Perform same data cleaning as with team offense, and similarly add 'Def' before column name to 
         # delineate defensive stats.
