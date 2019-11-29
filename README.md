@@ -14,5 +14,9 @@ Other details of the model are provided in the comments. Updates on progress of 
 
 Edited as of November 6, 2019 to exclude year 2017 from model input, as ratings have been deleted for most teams.
 
+Edited as of November 29, 2019 to include weekly data input with new function, get_week. This function adds ability to create spreads of all D1-A teams for a given week. The first input is the prediction year, and the second input is the week. A proper call is shown as follows:
+
+CFB(2010, 2018).get_week(2019,14)
+
 Source:
 "College Football Stats and History". Sports Reference, LLC. 2019. https://www.sports-reference.com/cfb/.
