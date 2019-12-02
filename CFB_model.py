@@ -13,7 +13,8 @@ class CFB:
     # Dictionary of current conferences and teams in conference for all D-1A, as of 2019 season. The teams 
     # are listed in the format the model accepts. 
     
-    current_conf =         {
+    current_conf = \
+        {
         'acc':['Virginia Tech', 'Boston College', 'Georgia Tech', 'Florida State',
                'Clemson', 'Pitt', 'Louisville', 'North Carolina',
                'Syracuse', 'Virginia', 'Duke', 'Miami (FL)',
@@ -52,7 +53,8 @@ class CFB:
     # All conferences existing from 2000 to 2019, with abbreviations used to convert from rank 
     # dataframe to URL input.
     
-    hist_conf =     {
+    hist_conf = \
+    {
                 'Southeastern Conference':'sec','Big East Conference':'big-east',
                 'Atlantic Coast Conference':'acc','Big 12 Conference':'big-12',
                 'American Athletic Conference':'american',
@@ -63,9 +65,11 @@ class CFB:
                 'Sun Belt Conference':'sun-belt','Big West Conference':'big-west'
     }
     
+    # Used to map schedule team names to stat team names.
     team_mapping = {'Louisiana State':'LSU','Southern Methodist':'SMU','Southern California':'USC',
                     'Central Florida':'UCF','Pittsburgh':'Pitt','Mississippi':'Ole Miss',
-                    'Alabama-Birmingham':'UAB','Texas-San Antonio':'UTSA','Texas-El Paso':'UTEP'}
+                    'Alabama-Birmingham':'UAB','Texas-San Antonio':'UTSA','Texas-El Paso':'UTEP',
+                    'Nevada-Las Vegas':'UNLV'}
     
     def __init__(self,year1,year2):
         """Initializes class inputs, range of years for model input."""
@@ -80,11 +84,11 @@ class CFB:
         
         # Convert PAC-12 to PAC-10 prior to 2011 for team offense. Then generate correct URL.
         if conf == 'pac-12' and self.year1 < 2011:
-            url_off = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-offense.html'.\
-                format(self.year1)
+            url_off = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-offense.html'.format\
+                (self.year1)
         else:
-            url_off = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-offense.html'.\
-                format(conf,self.year1)
+            url_off = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-offense.html'.format\
+                (conf,self.year1)
             
         # Request data using URL, join 0 and 1 level columns labels and format properly, drop games and points 
         # columns, and add 'Off' to beginning of column names to delineate offensive stats. Stats already 
@@ -99,11 +103,11 @@ class CFB:
             
         # Again convert PAC-12 to PAC-10 for years prior to 2011 and create URL.
         if conf == 'pac-12' and self.year1 < 2011:
-            url_def = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-defense.html'.\
-                format(self.year1)
+            url_def = 'https://www.sports-reference.com/cfb/conferences/pac-10/{}-team-defense.html'.format\
+                (self.year1)
         else:
-            url_def = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-defense.html'.\
-                format(conf,self.year1)
+            url_def = 'https://www.sports-reference.com/cfb/conferences/{}/{}-team-defense.html'.format\
+                    (conf,self.year1)
             
         # Perform same data cleaning as with team offense, and similarly add 'Def' before column name to 
         # delineate defensive stats.
@@ -139,7 +143,11 @@ class CFB:
         
         def strip_rank(team):
             """Strip ranking from team name."""
-            if '(' in team:
+            if '(OH)' in team:
+                team = 'Miami (OH)'
+            elif '(FL)' in team:
+                team = 'Miami (FL)'
+            elif '(' in team:
                 team = team.split(')')[-1]
             team = team.replace(u'\xa0', u'')
             return team
@@ -270,8 +278,8 @@ class CFB:
             away_stats['Rating'] = away_stats['School'].apply(lambda x: ratings.loc[x,'SRS'])
             for col in away_stats.columns:
                 away_stats.rename(columns={col: 'Away {}'.format(col)},inplace=True)   
-            home_stats = home_conf_stats[home_conf_stats['School'] == game[1]].\
-                copy().reset_index().drop(columns='index')
+            home_stats = home_conf_stats[home_conf_stats['School'] == game[1]]\
+                .copy().reset_index().drop(columns='index')
             home_stats['Rating'] = home_stats['School'].apply(lambda x: ratings.loc[x,'SRS'])
             for col in home_stats.columns:
                 home_stats.rename(columns={col: 'Home {}'.format(col)},inplace=True)
